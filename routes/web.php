@@ -1,10 +1,9 @@
 <?php
 
 Route::get('/', function () {
-    return view('master');
-});
+    return view('landing_main_page');
+})->name('mood');
 
-
-Route::get('/page2', function () {
-    return view('master');
-});
+Route::get('/product', function (){
+    return view('product.landing_product_page');
+})->name('product');
