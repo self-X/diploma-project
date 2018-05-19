@@ -18,11 +18,8 @@
 
         @include('layouts.navbar')
 
-        <div class="container">
-
             @yield('content')
 
-        </div>
         <footer class="container py-5">
             @include('layouts.footer')
         </footer>
