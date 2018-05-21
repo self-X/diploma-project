@@ -89,3 +89,104 @@
 
 .overflow-hidden { overflow: hidden; }
 
+.text-hover-color-darkred{color:black}
+.text-dark-hover-color-yeloow{color:black}
+.text-hover-color-darkred:hover{color: darkred;}
+.text-dark-hover-color-hotpink{color: white;}
+.text-dark-hover-color-orange{color: white}
+.text-dark-hover-color-hotpink:hover{color: hotpink;}
+.text-dark-hover-color-yeloow:hover{ color: yellow;}
+.text-dark-hover-color-orange:hover{color: orange}
+
+.image{
+  overflow:hidden;
+}
+.image img {
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.image img:hover{
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+}
+
+.mood-btn{
+  border: 1px solid white;
+  color: white;
+  font-size: 24px;
+}
+.mood-btn:hover{
+  border: 1px solid aqua;
+  color: aqua;
+}
+
+.checkbox-my{
+  cursor: pointer;
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 10px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+
+.checkbox-my:active, .checkbox-my:checked:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.checkbox-my:checked {
+  background-color: #e9ecee;
+  border: 10px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  color: #99a1a7;
+}
+
+.checkbox-my:checked:after {
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: aqua;
+}
+
+
+/**
+settings
+ */
+
+.scroll-settings {
+  border: 1px solid gainsboro;
+  padding: 5px;
+  font: 16px/26px sans-serif;
+  width: 200px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 15px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gainsboro;
+  border-radius: 0px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkblue;
+}
