@@ -9,84 +9,62 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HOME</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item " href="#">login</a>
-                    <a class="dropdown-item" href="#">Sign in</a>
-                    <a class="dropdown-item" href="#">My shopping bag</a>
+                @guest
+                    <a class="dropdown-item " href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="dropdown-item" href="{{ route('home') }}">My dashboard</a>
+                @else
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                    </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
+                    <a class="dropdown-item" href="{{ route('mood') }}">Main</a>
+                @endguest
                 </div>
             </li>
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ALL</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">BAGS</a>
-                    <a class="dropdown-item" href="#">FOOTWEAR</a>
-                    <a class="dropdown-item" href="#">ACCESSORIES</a>
-                    <a class="dropdown-item" href="#">KIDS</a>
-                    <a class="dropdown-item" href="#">SHOES</a>
-                    <a class="dropdown-item" href="#">SWEATER</a>
-                    <a class="dropdown-item" href="#">GLASSES</a>
-                    <a class="dropdown-item" href="#">T-SHIRT</a>
-                    <a class="dropdown-item" href="#">TUXEDO</a>
-                    <a class="dropdown-item" href="#">BRANDS</a>
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->title}}/{{$category->id}}">{{ $category->title  }}</a>
+                    @endforeach
                 </div>
             </li>
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOES</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">BAGS</a>
-                    <a class="dropdown-item" href="#">FOOTWEAR</a>
-                    <a class="dropdown-item" href="#">ACCESSORIES</a>
-                    <a class="dropdown-item" href="#">KIDS</a>
-                    <a class="dropdown-item active" href="#">SHOES</a>
-                    <a class="dropdown-item" href="#">SWEATER</a>
-                    <a class="dropdown-item" href="#">GLASSES</a>
-                    <a class="dropdown-item" href="#">T-SHIRT</a>
-                    <a class="dropdown-item" href="#">TUXEDO</a>
-                    <a class="dropdown-item" href="#">BRANDS</a>
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                    @endforeach
                 </div>
             </li>
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SWEATER</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">BAGS</a>
-                    <a class="dropdown-item" href="#">FOOTWEAR</a>
-                    <a class="dropdown-item" href="#">ACCESSORIES</a>
-                    <a class="dropdown-item" href="#">KIDS</a>
-                    <a class="dropdown-item " href="#">SHOES</a>
-                    <a class="dropdown-item active" href="#">SWEATER</a>
-                    <a class="dropdown-item" href="#">GLASSES</a>
-                    <a class="dropdown-item" href="#">T-SHIRT</a>
-                    <a class="dropdown-item" href="#">TUXEDO</a>
-                    <a class="dropdown-item" href="#">BRANDS</a>
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                    @endforeach
                 </div>
             </li>
             <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GLASSES</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">BAGS</a>
-                    <a class="dropdown-item" href="#">FOOTWEAR</a>
-                    <a class="dropdown-item" href="#">ACCESSORIES</a>
-                    <a class="dropdown-item" href="#">KIDS</a>
-                    <a class="dropdown-item " href="#">SHOES</a>
-                    <a class="dropdown-item " href="#">SWEATER</a>
-                    <a class="dropdown-item active" href="#">GLASSES</a>
-                    <a class="dropdown-item" href="#">T-SHIRT</a>
-                    <a class="dropdown-item" href="#">TUXEDO</a>
-                    <a class="dropdown-item" href="#">BRANDS</a>
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                    @endforeach
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">T-SHIRT</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">BAGS</a>
-                    <a class="dropdown-item" href="#">FOOTWEAR</a>
-                    <a class="dropdown-item" href="#">ACCESSORIES</a>
-                    <a class="dropdown-item" href="#">KIDS</a>
-                    <a class="dropdown-item " href="#">SHOES</a>
-                    <a class="dropdown-item " href="#">SWEATER</a>
-                    <a class="dropdown-item " href="#">GLASSES</a>
-                    <a class="dropdown-item active" href="#">T-SHIRT</a>
-                    <a class="dropdown-item" href="#">TUXEDO</a>
-                    <a class="dropdown-item" href="#">BRANDS</a>
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                    @endforeach
                 </div>
             </li>
         </ul>

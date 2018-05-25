@@ -11,20 +11,22 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     </head>
     <body>
 
         @include('layouts.navbar')
 
+        <main class="py-1">
             @yield('content')
+        </main>
 
         <footer class="container py-5">
             @include('layouts.footer')
         </footer>
 
-        <script src="js/app.js"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
 
 
     </body>
