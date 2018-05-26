@@ -20,7 +20,6 @@ class ProductController extends Controller
 
     public function index(Category $category)
     {
-        dd($this->products->getProductsByCategory($category->id));
         return view('product.landing_product_page', [
             $this->products->getProductsByCategory($category->id)
         ]);
