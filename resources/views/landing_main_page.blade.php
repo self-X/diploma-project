@@ -6,12 +6,12 @@
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 font-weight-normal">BEST FOR KIDS</h1>
             <p class="lead font-weight-normal" style="font-size: 20px;">The best for kids with love </p>
-            <a class="btn btn-dark" style="width: 300px" href="#">KIDS</a>
+            <a class="btn btn-dark" style="width: 300px" href="/products/kids">KIDS</a>
         </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" style="cursor: pointer; ">
-        <a href="/product"
+        <a href="/products/accessories"
            class="text-dark-hover-color-hotpink bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
            style="text-decoration: none">
             <div>
@@ -23,7 +23,7 @@
                      alt="accessories">
             </div>
         </a>
-        <a href="#" class="text-hover-color-darkred  mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+        <a href="/products/glasses" class="text-hover-color-darkred  mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
            style="background: lightblue; text-decoration: none">
             <div>
                 <h2 class="display-5">GLASSES</h2>
@@ -39,7 +39,7 @@
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" style="cursor: pointer;">
 
-        <a href="#" class="text-dark-hover-color-orange mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+        <a href="/products/bags" class="text-dark-hover-color-orange mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
            style="background: #8a6d3b; text-decoration: none">
             <div>
                 <h2 class="display-5">BAGS</h2>
@@ -50,7 +50,7 @@
             </div>
         </a>
 
-        <a href="#" class="text-dark-hover-color-yeloow mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center  overflow-hidden"
+        <a href="/products/footwear" class="text-dark-hover-color-yeloow mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center  overflow-hidden"
            style="background:burlywood; text-decoration: none">
             <div>
                 <h2 class="display-5">FOOTWEAR</h2>
@@ -63,7 +63,7 @@
     </div>
 
     <div class=" d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" style="cursor: pointer;">
-        <a href="#" class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden"
+        <a href="/products/t-shirt" class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden"
            style="background:lightgray; text-decoration: none">
             <div class="my-3 p-3">
                 <h2 class="display-5">T-SHORT</h2>
@@ -73,7 +73,7 @@
                 <img src="/images/categories/tshorts/tshort3.png" style="width: 87%" alt="t-short">
             </div>
         </a>
-        <a href="#" class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
+        <a href="/products/sweater" class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
            style="text-decoration: none">
             <div class="my-3 py-3">
                 <h2 class="display-5">SWEATER</h2>

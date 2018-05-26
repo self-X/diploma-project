@@ -30,4 +30,10 @@ class Category extends Model
     }
 
 
+    public function getByTitle($category)
+    {
+        return $this->where('title', $category)->first();
+    }
+
+
 }

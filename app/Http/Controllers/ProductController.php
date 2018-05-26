@@ -18,11 +18,15 @@ class ProductController extends Controller
     }
 
 
-    public function index(Category $category)
+    public function index($category)
     {
-        return view('product.landing_product_page', [
-            $this->products->getProductsByCategory($category->id)
-        ]);
+        $category = $this->category->getByTitle($category);
+        if (!empty($category)){
+            return view('product.landing_product_page', [
+                'prod' => $this->products->getProductsByCategory($category->id),
+            ]);
+        }
+        return back();
     }
 
     public function create()
@@ -35,9 +39,9 @@ class ProductController extends Controller
 
     }
 
-    public function show()
+    public function show($category, Product $product)
     {
-
+        dd($category , $product);
     }
 
     public function edit()

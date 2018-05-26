@@ -3,7 +3,6 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse  d-flex flex-column flex-md-row justify-content-between" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
@@ -31,7 +30,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ALL</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->title}}/{{$category->id}}">{{ $category->title  }}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
                     @endforeach
                 </div>
             </li>
@@ -39,7 +38,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOES</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
                     @endforeach
                 </div>
             </li>
@@ -47,7 +46,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SWEATER</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
                     @endforeach
                 </div>
             </li>
@@ -55,7 +54,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GLASSES</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
                     @endforeach
                 </div>
             </li>
@@ -63,7 +62,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">T-SHIRT</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{$category->id}}">{{ $category->title  }}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
                     @endforeach
                 </div>
             </li>
