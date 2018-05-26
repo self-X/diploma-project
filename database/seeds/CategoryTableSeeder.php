@@ -36,7 +36,6 @@ class CategoryTableSeeder extends Seeder
             'jeans' =>'Lorem Ipsum Dollar Sit Amet',
             'mystery box' => 'Lorem Ipsum Dollar Sit Amet',
 
-
         ];
 
         foreach ($categories as $category => $description){

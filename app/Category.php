@@ -21,5 +21,13 @@ class Category extends Model
         return $this->all();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+
 
 }
