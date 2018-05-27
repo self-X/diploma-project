@@ -2,9 +2,6 @@
 @section('title', 'Best Product')
 
 @section('content')
-
-{{--@include('product.detail')--}}
-
 <style>
     .card-block{
         border: none;
@@ -31,7 +28,7 @@
                 @endif
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <a href="/products/{{$categoryTitle}}/{{$product->id}}" class="btn btn-sm btn-dark">View</a>
                         <button type="button" class="btn btn-sm btn-outline-secondary">add +</button>
                     </div>
                     <small class="text-muted">{{$product->created_at}}</small>
@@ -39,8 +36,6 @@
             </div>
         </div>
 @endforeach
-
-
     </div>
 </div>
 

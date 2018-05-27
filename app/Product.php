@@ -20,4 +20,11 @@ class Product extends Model
     {
         return $this->all()->where('category_id', $categoryId);
     }
+
+    public function  getTitleOfCategory($category)
+    {
+        return $this->category()->where('title', $category)->first()->title;
+    }
+
+
 }

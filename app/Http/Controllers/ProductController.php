@@ -24,6 +24,7 @@ class ProductController extends Controller
         if (!empty($category)){
             return view('product.landing_product_page', [
                 'prod' => $this->products->getProductsByCategory($category->id),
+                'categoryTitle' => $category->title,
             ]);
         }
         return back();
@@ -41,7 +42,14 @@ class ProductController extends Controller
 
     public function show($category, Product $product)
     {
-        dd($category , $product);
+        if (!empty($category) && $category == $product->getTitleOfCategory($category)){
+//            $short_description = array_slice(explode(' ', $product->description),0, 8);
+//            $short_description = implode(' ',$short_description).'...';
+            return view('product.detail', [
+                'prod' => $product,
+            ]);
+        }
+        return back();
     }
 
     public function edit()

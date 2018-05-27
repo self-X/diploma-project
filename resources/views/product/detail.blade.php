@@ -1,21 +1,17 @@
+@extends('master')
+@section('title', $prod->title)
 
+@section('content')
 <div class="container">
     <div class="card flex-md-row  box-shadow h-md-250">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" style="width: 350px; height: 500px;">
-                    <img class="card-img-right flex-auto d-none d-lg-block d-block w-100 " src="images/8.jpg"
+                    <img class="card-img-right flex-auto d-none d-lg-block d-block w-100" src="/images/{{$prod->img_name}}"
                          alt="First slide">
                 </div>
-                <div class="carousel-item" style="width: 350px; height: 500px;">
-                    <img class="card-img-right flex-auto d-none d-lg-block d-block w-100" src="images/9.jpg"
-                         alt="Second slide">
-                </div>
-                <div class="carousel-item" style="width: 350px; height: 500px;">
-                    <img class="card-img-right flex-auto d-none d-lg-block d-block w-100" src="images/10.jpg"
-                         alt="Third slide">
-                </div>
             </div>
+            {{--
             <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -24,27 +20,23 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+            --}}
         </div>
 
         {{--card1--}}
         <div class="card-body d-flex flex-column align-items-start">
-            <h2 class="d-inline-block mb-2 text-dark">soluta nobis eleifend option</h2>
+            <h2 class="d-inline-block mb-2 text-dark">{{$prod->title}}</h2>
 
             <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
 
-            <div class="mb-1 text-muted">Nov 12</div>
-
-            <p class="card-text" style="display: block; width: 400px; text-align: justify">
-                when an unknown printer took a galley of type and scrambled it to
-            </p>
-
+            <div class="mb-1 text-muted">{{$prod->created_at}}</div>
 
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">Price:</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$110.00
+                    <h1 class="card-title pricing-card-title">{{$prod->price}}
                         <small class="text-muted">/ mo</small>
                     </h1>
                     <h4>Select a size :</h4>
@@ -93,15 +85,7 @@
             <h4 class="my-0 font-weight-normal">Details</h4>
         </div>
         <div class="card-body">
-                    <span class="">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                        ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
-                        vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel
-                        illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim
-                        qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-                        Nam liber tempor cum soluta nobis eleifend option
-                    </span>
+                    <span class="">{{$prod->description}}</span>
         </div>
 
         <div class="card mb-4 box">
@@ -171,3 +155,4 @@
         </div>
     </div>
 </div>
+@endsection
