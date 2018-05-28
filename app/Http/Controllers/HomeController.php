@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Product;
 
 class HomeController extends Controller
 {
+
+    protected  $product;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Product $product)
     {
         $this->middleware('auth');
+        $this->product = $product;
     }
 
     /**
@@ -23,6 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $userProducts =$user->products()->get();
+        return view('home.home', [
+            'myProd' => $userProducts,
+        ]);
     }
 }

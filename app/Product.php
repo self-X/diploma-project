@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Product extends Model
 {
 
@@ -24,6 +24,12 @@ class Product extends Model
     public function  getTitleOfCategory($category)
     {
         return $this->category()->where('title', $category)->first()->title;
+    }
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_product');
     }
 
 

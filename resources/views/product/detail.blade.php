@@ -70,13 +70,15 @@
                         </ul>
                     </div>
 
-                    <button type="button" class="btn btn-lg btn-block btn-dark">Add to card</button>
+                    <button type="button" class="btn btn-lg btn-block btn-dark">ADD TO CARD</button>
+                    <button type="button" class="btn btn-lg btn-block btn-success">BUY</button>
 
                 </div>
 
             </div>
-
-            <a href="#" class="badge-pill badge badge-info">login to save in wishlist</a>
+            @guest
+            <a href="/login" class="badge-pill badge badge-info">login to save in wishlist</a>
+            @endguest
         </div>
     </div>
 

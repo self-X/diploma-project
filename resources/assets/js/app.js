@@ -23,3 +23,25 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 */
 
 
+
+var moodApp ={
+
+    nyshopognali: function () {
+        // landingproductpage
+        // ajax
+        // alert
+        alert(1);
+    },
+
+    init:function () {
+        this.nyshopognali();
+    }
+};
+
+$(
+    function () {
+        moodApp.init();
+    }
+);
+
+

@@ -11932,7 +11932,7 @@ jQuery.extend( {
 	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
 	ajaxTransport: addToPrefiltersOrTransports( transports ),
 
-	// MoodPageController method
+	// Main method
 	ajax: function( url, options ) {
 
 		// If url is an object, simulate pre-1.5 signature
@@ -13897,6 +13897,21 @@ Vue.component('example-component', __webpack_require__(39));
     el: '#app'
 });
 */
+
+var moodApp = {
+
+    nyshopognali: function nyshopognali() {
+        alert(1);
+    },
+
+    init: function init() {
+        this.nyshopognali();
+    }
+};
+
+$(function () {
+    moodApp.init();
+});
 
 /***/ }),
 /* 13 */

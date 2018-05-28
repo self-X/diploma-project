@@ -190,3 +190,32 @@ settings
 ::-webkit-scrollbar-thumb:hover {
   background: darkblue;
 }
+
+
+.card-block-going{
+  border: none;
+}
+.card-block-going:hover{
+  border: 1px solid red;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.card-block-hist{
+  border: none;
+}
+.card-block-hist:hover{
+  border: 1px solid darkblue;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.card-block-bag{
+  border: none;
+}
+.card-block-bag:hover{
+  border: 1px solid green;
+  cursor: pointer;
+  border-radius: 5px;
+}

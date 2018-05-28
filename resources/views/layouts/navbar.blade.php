@@ -35,36 +35,16 @@
                 </div>
             </li>
             <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOES</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
-                    @endforeach
-                </div>
+                <a class="nav-link " href="/products/footwear" >FOOTWEAR</a>
             </li>
             <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SWEATER</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
-                    @endforeach
-                </div>
+                <a class="nav-link " href="/products/sweater" >SWEATER</a>
             </li>
             <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GLASSES</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
-                    @endforeach
-                </div>
+                <a class="nav-link " href="/products/jeans" >JEANS</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">T-SHIRT</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    @foreach($categories as $category)
-                        <a class="dropdown-item" style="text-transform: uppercase" href="{{'/products/'.$category->title}}">{{ $category->title  }}</a>
-                    @endforeach
-                </div>
+                <a class="nav-link " href="/products/bags" >BAGS</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

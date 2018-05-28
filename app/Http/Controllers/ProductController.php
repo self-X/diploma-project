@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Category;
 
@@ -28,6 +29,15 @@ class ProductController extends Controller
             ]);
         }
         return back();
+    }
+
+
+    public function add($category, Product $product)
+    {
+            $user = Auth::user();
+            $product->users()->attach($user);
+            return back();
+
     }
 
     public function create()
