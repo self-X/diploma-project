@@ -2,22 +2,7 @@
 @section('title', 'Best Product')
 
 @section('content')
-<style>
-    .card-block{
-        border: none;
-    }
-    .card-block:hover{
-       border:  1px solid crimson;
-        cursor: pointer;
-    }
-
-    .card-block-active{
-        border:  1px solid crimson;
-        cursor: pointer;
-    }
-
-</style>
-
+<div id="responseToAddCard"></div>
 <div class="container">
     <div class="row">
 @foreach( $prod as $product)
@@ -33,10 +18,10 @@
                 @endif
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <a href="{{$categoryTitle}}/{{$product->id}}" class="btn btn-sm btn-dark">View</a>
-                        <form action="/{{$categoryTitle}}/{{$product->id}}" method="POST">
+                        <a  href="{{$categoryTitle}}/{{$product->id}}" class="btn btn-sm btn-dark">View</a>
+                        <form  id="addCardForm" action="/{{$categoryTitle}}/{{$product->id}}" method="POST">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-sm btn-outline-secondary">add +</button>
+                            <button type="submit" class="btn click btn-sm btn-outline-secondary">add +</button>
                         </form>
                     </div>
                     <small class="text-muted">{{$product->created_at}}</small>
@@ -46,7 +31,5 @@
 @endforeach
     </div>
 </div>
-
-
 
 @endsection

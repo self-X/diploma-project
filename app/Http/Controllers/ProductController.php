@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Exceptions\Handler;
 use App\Product;
 use App\Category;
+use Mockery\Exception;
 
 class ProductController extends Controller
 {
@@ -34,9 +36,17 @@ class ProductController extends Controller
 
     public function add($category, Product $product)
     {
-            $user = Auth::user();
-            $product->users()->attach($user);
-            return back();
+        if (Auth::check()){
+                $user = Auth::user();
+                if ($user->products->find($product)){
+                    return ['success'=>'alert alert-warning', 'message' => 'you have already it on your bag'];
+                }
+                $product->users()->attach($user);
+                return ['success' => 'alert alert-success', 'message' =>'your product has been added'];
+
+        }else{
+            return ['success' => 'alert alert-danger', 'message' =>'please login to add something to your bag'];
+        }
 
     }
 
@@ -57,6 +67,7 @@ class ProductController extends Controller
 //            $short_description = implode(' ',$short_description).'...';
             return view('product.detail', [
                 'prod' => $product,
+                'categoryTitle' => $category
             ]);
         }
         return back();

@@ -2,6 +2,7 @@
 @section('title', $prod->title)
 
 @section('content')
+<div id="responseToAddCard"></div>
 <div class="container">
     <div class="card flex-md-row  box-shadow h-md-250">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -69,8 +70,11 @@
                             </li>
                         </ul>
                     </div>
-
-                    <button type="button" class="btn btn-lg btn-block btn-dark">ADD TO CARD</button>
+                    <form  id="addCardForm" action="/{{$categoryTitle}}/{{$prod->id}}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn click btn-lg btn-block btn-dark">ADD TO CARD</button>
+                    </form>
+                    <hr>
                     <button type="button" class="btn btn-lg btn-block btn-success">BUY</button>
 
                 </div>

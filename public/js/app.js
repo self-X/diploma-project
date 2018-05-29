@@ -13900,12 +13900,37 @@ Vue.component('example-component', __webpack_require__(39));
 
 var moodApp = {
 
-    nyshopognali: function nyshopognali() {
-        alert(1);
+    addCard: function addCard() {
+        $('#addCardForm .click').click(function (e) {
+            e.preventDefault();
+
+            var $data;
+
+            var url = $(this).parent('form').attr('action');
+            var detailProduct = url.split('/');
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
+                },
+                url: url,
+                type: 'POST',
+                data: {
+                    'category': detailProduct[1],
+                    'product': detailProduct[2]
+                },
+                success: function success(result) {
+                    if (result) {
+                        $('#responseToAddCard').attr('class', result.success);
+                        $('#responseToAddCard').html(result.message);
+                    }
+                }
+            });
+        });
     },
 
     init: function init() {
-        this.nyshopognali();
+        this.addCard();
     }
 };
 

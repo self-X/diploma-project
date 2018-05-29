@@ -26,15 +26,38 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 var moodApp ={
 
-    nyshopognali: function () {
-        // landingproductpage
-        // ajax
-        // alert
-        alert(1);
+    addCard: function () {
+        $('#addCardForm .click').click(function(e){
+            e.preventDefault();
+
+            var $data;
+
+            var url = $(this).parent('form').attr('action');
+            var detailProduct = url.split('/');
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
+                },
+                url: url,
+                type: 'POST',
+                data: {
+                  'category': detailProduct[1],
+                  'product' : detailProduct[2]
+                },
+                success: function(result){
+                    if (result){
+                        $('#responseToAddCard').attr('class', result.success);
+                        $('#responseToAddCard').html(result.message);
+                    }
+                }
+            });
+
+        });
     },
 
     init:function () {
-        this.nyshopognali();
+        this.addCard();
     }
 };
 

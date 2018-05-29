@@ -10665,3 +10665,21 @@ settings
   border-radius: 5px;
 }
 
+.card-block {
+  border: none;
+}
+
+.card-block:hover {
+  border: 1px solid crimson;
+  cursor: pointer;
+}
+
+.card-block-active {
+  border: 1px solid crimson;
+  cursor: pointer;
+}
+
+#responseToAddCard {
+  float: left;
+}
+
