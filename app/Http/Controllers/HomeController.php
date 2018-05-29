@@ -29,9 +29,16 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userProducts =$user->products()->get();
+        $userProducts =$user->products;
+        $price=0;
+        foreach ($userProducts as $product){
+            $price += preg_replace("/[^0-9]/", '', $product->price);
+        }
+        $howMuch = count($userProducts);
         return view('home.home', [
             'myProd' => $userProducts,
+            'sumOfProduct' => $howMuch,
+            'price' => $price,
         ]);
     }
 }

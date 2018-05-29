@@ -3,11 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\User;
 class Product extends Model
 {
-
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -18,7 +17,7 @@ class Product extends Model
 
     public function  getProductsByCategory($categoryId)
     {
-        return $this->all()->where('category_id', $categoryId);
+        return DB::table('products')->where('category_id', $categoryId)->paginate(8);
     }
 
     public function  getTitleOfCategory($category)

@@ -30,6 +30,8 @@
         </div>
 @endforeach
     </div>
+    <hr>
+    <div style="position: relative; left: 50%; margin-left:-10%">{{ $prod->links() }}</div>
 </div>
 
 @endsection
