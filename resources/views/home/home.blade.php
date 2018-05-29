@@ -5,7 +5,7 @@
 
     @include('home.bag')
     @include('home.history')
-    @include('home.wishes')
+    {{--@include('home.wishes')--}}
 <div class="clearfix"></div>
 </div>
 

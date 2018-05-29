@@ -2,7 +2,7 @@
 @section('title', $prod->title)
 
 @section('content')
-<div id="responseToAddCard"></div>
+<div style="position: fixed;" id="responseToAddCard"></div>
 <div class="container">
     <div class="card flex-md-row  box-shadow h-md-250">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">

@@ -2,7 +2,7 @@
 @section('title', 'Best Product')
 
 @section('content')
-<div id="responseToAddCard"></div>
+<div style="position: fixed;" id="responseToAddCard"></div>
 <div class="container">
     <div class="row">
 @foreach( $prod as $product)
