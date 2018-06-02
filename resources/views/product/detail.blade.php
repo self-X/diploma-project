@@ -75,7 +75,19 @@
                         <button type="submit" class="btn click btn-lg btn-block btn-dark">ADD TO CARD</button>
                     </form>
                     <hr>
-                    <button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>
+                    {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
+                    <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
+                        {{ csrf_field() }}
+                        <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
+                                data-amount="{{$stripePrice}}"
+                                data-name="{{$prod->title}}"
+                                data-description="{{$prod->description}}"
+                                data-image="/images/{{$prod->img_name}}"
+                                data-locale="auto">
+                        </script>
+                    </form>
                 </div>
 <div id="makeOrder" class="modal fade">
     <div class="modal-dialog">
@@ -85,19 +97,6 @@
                 let`s buy!
             </div>
             <div class="modal-footer">
-                <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
-                    {{ csrf_field() }}
-                    <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
-                            data-amount="999"
-                            data-name="MyPersonalTestAcc"
-                            data-description="Example charge"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                            data-locale="auto">
-                    </script>
-                </form>
-                {{--<button class="btn btn-primary" type="button">Buy</button>--}}
                 <button class="btn btn-dark" type="button" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Psy\Command\DumpCommand;
 use Stripe\Stripe;
 use App\Exceptions\Handler;
 use App\Product;
 use App\Category;
+use App\User;
 use Mockery\Exception;
 
 class ProductController extends Controller
 {
     protected $products;
     protected $category;
-    private $stripeToken;
+    private $stripeApiKey;
 
     public function __construct(Product $prod, Category $category)
     {
-        $this->stripeToken = Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $this->stripeApiKey = Stripe::$apiKey;
         $this->products = $prod;
         $this->category = $category;
     }
@@ -53,22 +56,40 @@ class ProductController extends Controller
 
     }
 
-    public function buy(Request $request)
+    public function buy($category, Product $product, Request $request)
     {
-        \Stripe\Stripe::setApiKey("sk_test_SFfeUgYBaITZzWEa0tGJRGaO");
+
+        if (Auth::check()){
+//            try {
+//                $stripePrice = preg_replace("/[^0-9]/", '', $product->price) * 100;
+//                $response = Auth::user()->charge($stripePrice);
+//                dump($request);
+//                dump($response);
+//            } catch (Exception $e) {
+//                dump($e->getMessage());
+//                return back();
+//            }
+
 
 // Token is created using Checkout or Elements!
 // Get the payment token ID submitted by the form:
-        $token = $_POST['stripeToken'];
 
-        $charge = \Stripe\Charge::create([
-            'amount' => 999,
-            'currency' => 'usd',
-            'description' => 'Example charge',
-            'source' => $token,
-        ]);
-        dump($token);
-        dump($charge);
+//            $token = $_POST['stripeToken'];
+//
+//            $charge = \Stripe\Charge::create([
+//                'amount' => 999,
+//                'currency' => 'usd',
+//                'description' => 'Example charge',
+//                'source' => $token,
+//            ]);
+
+            $charge =Auth::user()->charge(1500,[
+                'currency' => 'usd',
+                'description' => 'Example charge',
+                'source' =>$request->stripeToken,
+            ]);
+            dump($charge);
+        }
         die('STOP');
     }
 
@@ -84,11 +105,14 @@ class ProductController extends Controller
 
     public function show($category, Product $product)
     {
+
         if (!empty($category) && $category == $product->getTitleOfCategory($category)){
 //            $short_description = array_slice(explode(' ', $product->description),0, 8);
 //            $short_description = implode(' ',$short_description).'...';
+            $stripePrice = preg_replace("/[^0-9]/", '', $product->price) * 100;
             return view('product.detail', [
                 'prod' => $product,
+                'stripePrice' => $stripePrice,
                 'categoryTitle' => $category
             ]);
         }
