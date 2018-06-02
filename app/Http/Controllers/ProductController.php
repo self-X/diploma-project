@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
 use App\Exceptions\Handler;
 use App\Product;
 use App\Category;
@@ -13,9 +14,11 @@ class ProductController extends Controller
 {
     protected $products;
     protected $category;
+    private $stripeToken;
 
     public function __construct(Product $prod, Category $category)
     {
+        $this->stripeToken = Stripe::setApiKey(config('services.stripe.secret'));
         $this->products = $prod;
         $this->category = $category;
     }
@@ -48,6 +51,25 @@ class ProductController extends Controller
             return ['success' => 'alert alert-danger', 'message' =>'please login to add something to your bag'];
         }
 
+    }
+
+    public function buy(Request $request)
+    {
+        \Stripe\Stripe::setApiKey("sk_test_SFfeUgYBaITZzWEa0tGJRGaO");
+
+// Token is created using Checkout or Elements!
+// Get the payment token ID submitted by the form:
+        $token = $_POST['stripeToken'];
+
+        $charge = \Stripe\Charge::create([
+            'amount' => 999,
+            'currency' => 'usd',
+            'description' => 'Example charge',
+            'source' => $token,
+        ]);
+        dump($token);
+        dump($charge);
+        die('STOP');
     }
 
     public function create()
