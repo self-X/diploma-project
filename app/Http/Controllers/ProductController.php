@@ -4,26 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Psy\Command\DumpCommand;
-use Stripe\Stripe;
 use App\Exceptions\Handler;
 use App\Product;
 use App\Category;
 use App\User;
 use Mockery\Exception;
+use App\Http\Controllers\StripeService;
 
 class ProductController extends Controller
 {
     protected $products;
     protected $category;
-    private $stripeApiKey;
+    protected $stipeService;
 
-    public function __construct(Product $prod, Category $category)
+    public function __construct(Product $prod, Category $category, StripeService $stripeService)
     {
-        Stripe::setApiKey(config('services.stripe.secret'));
-        $this->stripeApiKey = Stripe::$apiKey;
         $this->products = $prod;
         $this->category = $category;
+        $this->stipeService = $stripeService;
     }
 
 
@@ -58,38 +56,9 @@ class ProductController extends Controller
 
     public function buy($category, Product $product, Request $request)
     {
-
-        if (Auth::check()){
-//            try {
-//                $stripePrice = preg_replace("/[^0-9]/", '', $product->price) * 100;
-//                $response = Auth::user()->charge($stripePrice);
-//                dump($request);
-//                dump($response);
-//            } catch (Exception $e) {
-//                dump($e->getMessage());
-//                return back();
-//            }
-
-
-// Token is created using Checkout or Elements!
-// Get the payment token ID submitted by the form:
-
-//            $token = $_POST['stripeToken'];
-//
-//            $charge = \Stripe\Charge::create([
-//                'amount' => 999,
-//                'currency' => 'usd',
-//                'description' => 'Example charge',
-//                'source' => $token,
-//            ]);
-
-            $charge =Auth::user()->charge(1500,[
-                'currency' => 'usd',
-                'description' => 'Example charge',
-                'source' =>$request->stripeToken,
-            ]);
-            dump($charge);
-        }
+        $stripePrice = preg_replace("/[^0-9]/", '', $product->price)*100;
+        $this->stipeService->addNewCharge(Auth::user(), $stripePrice);
+            //fill order in database without user related but with user mail
         die('STOP');
     }
 
