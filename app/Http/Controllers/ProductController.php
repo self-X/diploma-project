@@ -56,11 +56,9 @@ class ProductController extends Controller
 
     public function buy($category, Product $product, Request $request)
     {
-
         $stripePrice = preg_replace("/[^0-9]/", '', $product->price)*100;
-//        $this->stipeService->addNewCharge(Auth::user(), $stripePrice);
-        $this->stipeService->test(Auth::user()->id);
-            //fill order in database without user related but with user mail
+        dump($this->stipeService->addNewCharge(Auth::user(), $stripePrice));
+        //вытащить по ид charge mail
         die('STOP');
     }
 

@@ -18,57 +18,43 @@ class StripeService  extends Controller {
         $this->stripeEmail = $request->stripeEmail;
     }
 
-    public function test($id)
-    {
-        $user = User::find($id);
-        $user->charge(12321,[
-            'source'=>$this->stripeToken
-        ]);
-    }
-
     public function addNewCharge(User $user = null, $stripePrice)
     {
-
-        //Клиенты все которые зареганы в базе или и те которые нет ?
         try{
             if ($user){
-                //function checkUserAsStipeCustomer
-                $user->asStripeCustomer();
-                
-                }else{
-                    $customer = $user->createAsStripeCustomer( $this->stripeToken,[]);
-                }
-
-//                dd($user);
-//                dump($this->getAllCustomers());
-//                die();
-
-
-                $charge = $user->charge($stripePrice,[
+                if($user->stripe_id){
+//                    $user->asStripeCustomer($user->stripe_id);
+                    $charge = $user->charge($stripePrice,[
                     'currency' => 'usd',
-                    'customer' => $customer->id,
-                ]);
-                return $charge;
-
+                    'customer' => $user->stripe_id,
+                    ]);
+                    return $charge;
+                }else{
+                    $customer = $user->createAsStripeCustomer($this->stripeToken);
+                    $charge = $user->charge($stripePrice,[
+                        'currency' => 'usd',
+                        'customer' => $customer->id,
+                    ]);
+                    return $charge;
+                }
             }else{
                 $charge = Charge::create([
                     'amount' => $stripePrice,
                     'currency' => 'usd',
                     'description' => 'unauthorized customer',
                     'source' => $this->stripeToken,
-                ]);
-                return $charge;
+                    ]);
+                    return $charge;
+                }
+            }catch(Exception $exception){
+                $exception->getMessage();
             }
-
-        }catch (Exception $exception){
-            $exception->getMessage();
-        }
-
     }
 
     /**
      * @param $user
      * @return Customer
+     * ==createAsStripeCustomer
      */
     public function addNewCostumer($user)
     {
