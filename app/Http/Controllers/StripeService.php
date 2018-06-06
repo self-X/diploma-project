@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Stripe\Customer;
-
+use App\User;
 class StripeService  extends Controller {
 
     protected  $stripeToken;
@@ -18,19 +18,32 @@ class StripeService  extends Controller {
         $this->stripeEmail = $request->stripeEmail;
     }
 
-    public function addNewCharge($user = null, $stripePrice)
+    public function test($id)
+    {
+        $user = User::find($id);
+        $user->charge(12321,[
+            'source'=>$this->stripeToken
+        ]);
+    }
+
+    public function addNewCharge(User $user = null, $stripePrice)
     {
         try{
             if ($user){
+                $user->asStripeCustomer();
+//                dd($user);
+//                dump($this->getAllCustomers());
+//                die();
                 $customer = $this->addNewCostumer($user);
+
+
                 $charge = $user->charge($stripePrice,[
                     'currency' => 'usd',
-                    'source' =>$this->stripeToken,
+                    'customer' => $customer->id,
                 ]);
                 return $charge;
 
             }else{
-                dump($this->stripeEmail);
                 $charge = Charge::create([
                     'amount' => $stripePrice,
                     'currency' => 'usd',
@@ -56,6 +69,13 @@ class StripeService  extends Controller {
             'source' => $this->stripeToken,
             'email' => $user->email,
         ]);
+
         return $customer;
+    }
+
+
+    public function getAllCustomers()
+    {
+        return Customer::all();
     }
 }
