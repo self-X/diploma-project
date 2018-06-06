@@ -28,13 +28,20 @@ class StripeService  extends Controller {
 
     public function addNewCharge(User $user = null, $stripePrice)
     {
+
+        //Клиенты все которые зареганы в базе или и те которые нет ?
         try{
             if ($user){
+                //function checkUserAsStipeCustomer
                 $user->asStripeCustomer();
+                
+                }else{
+                    $customer = $user->createAsStripeCustomer( $this->stripeToken,[]);
+                }
+
 //                dd($user);
 //                dump($this->getAllCustomers());
 //                die();
-                $customer = $this->addNewCostumer($user);
 
 
                 $charge = $user->charge($stripePrice,[
@@ -69,6 +76,9 @@ class StripeService  extends Controller {
             'source' => $this->stripeToken,
             'email' => $user->email,
         ]);
+
+        $user->stripe_id = $customer->id;
+        $user->save();
 
         return $customer;
     }
