@@ -72,7 +72,7 @@
                     </div>
                     <form  id="addCardForm" action="/{{$categoryTitle}}/{{$prod->id}}" method="POST">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn click btn-lg btn-block btn-dark">ADD TO CARD</button>
+                        <button type="submit" class="btn click  btn-dark"><b>ADD TO BAG</b></button>
                     </form>
                     <hr>
                     {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
