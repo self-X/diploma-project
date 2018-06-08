@@ -19,10 +19,6 @@ class AlterProductsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('order_id')
-                ->references('id')->on('order')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
         });
     }
 

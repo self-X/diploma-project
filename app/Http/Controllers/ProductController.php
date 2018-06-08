@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Exceptions\Handler;
 use App\Product;
 use App\Category;
-use App\User;
+use App\Order;
 use Mockery\Exception;
 use App\Http\Controllers\StripeService;
 
@@ -15,12 +15,14 @@ class ProductController extends Controller
 {
     protected $products;
     protected $category;
+    protected $order;
     protected $stipeService;
 
-    public function __construct(Product $prod, Category $category, StripeService $stripeService)
+    public function __construct(Product $prod, Category $category, Order $order, StripeService $stripeService)
     {
         $this->products = $prod;
         $this->category = $category;
+        $this->order = $order;
         $this->stipeService = $stripeService;
     }
 
@@ -57,14 +59,12 @@ class ProductController extends Controller
     public function buy($category, Product $product)
     {
         $stripePrice = preg_replace("/[^0-9]/", '', $product->price)*100;
-        $this->stipeService->addNewCharge(Auth::user(), $stripePrice);
+        $charge = $this->stipeService->addNewCharge(Auth::user(), $stripePrice);
         if (Auth::check()) {
-            //category
-            //product_id hasManyProducts
-            //user_id belongsToUser
-            //date()
-            return redirect('home.home');
+            $this->order->addOrder(Auth::user()->email, $product->id);
+            return redirect('home');
         }else{
+            $this->order->addOrder($charge->source->name, $product->id);
             return back();
         }
     }
