@@ -16,14 +16,14 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_email');
-            $table->integer('category_id');
             $table->integer('product_id');
             $table->timestamps();
         });
+
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.stoMany
      *
      * @return void
      */

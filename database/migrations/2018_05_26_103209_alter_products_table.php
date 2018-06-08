@@ -18,6 +18,11 @@ class AlterProductsTable extends Migration
                 ->references('id')->on('categories')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
+
+            $table->foreign('order_id')
+                ->references('id')->on('order')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
@@ -30,6 +35,7 @@ class AlterProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('products_category_id_foreign');
+            $table->dropForeign('products_order_id_foreign');
         });
     }
 }
