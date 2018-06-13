@@ -12,7 +12,18 @@
                     <div class="col-7">
                         <span>{{$myProduct->description}}</span><br>
                         <b>Price:</b><i style="color: blue; padding-left: 5px; padding-right: 5px; font-size: 16px;">{{$myProduct->price}}</i>
-                        <button class="btn btn-success btn-lg " style="float: right; margin: 5px;">Buy</button>
+                        <form action="/products/{{$categoryTitle}}/{{$myProduct->id}}" method="POST">
+                            {{ csrf_field() }}
+                            <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
+                                    data-amount="{{$stripePrice}}"
+                                    data-name="{{$myProduct->title}}"
+                                    data-description="{{$myProduct->description}}"
+                                    data-image="/images/{{$myProduct->img_name}}"
+                                    data-locale="auto">
+                            </script>
+                        </form>
                     </div>
                 </div>
             </div>

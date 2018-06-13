@@ -17,6 +17,11 @@ class Order extends Model
         return $this->belongsTo('App\Product', 'product_id');
     }
 
+    public function getOrdersByEmail($email)
+    {
+        return $this->where('user_email', $email)->get();
+    }
+
     public function getUserByEmail($email)
     {
         return User::where('email', $email);

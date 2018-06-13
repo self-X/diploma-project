@@ -1,5 +1,6 @@
 <?php
 Route::get('/', 'MoodPageController@index')->name('mood');
+Route::get('/lookingfor', 'MoodPageController@search');
 
 Route::get('/products/{category}', 'ProductController@index')->name('product');
 
