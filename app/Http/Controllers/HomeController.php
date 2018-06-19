@@ -54,16 +54,16 @@ class HomeController extends Controller
     }
 
 
-    public function orderCollection($email)
-    {
-        $answer = new Collection();
-        $orders = $this->order->getOrdersByEmail($email);
-        foreach ($orders as $order){
-            $product = $order->product;
-            $product->order_id = $order->id;
-            $product->user_email =$order->user_email;
-            $answer->push($product);
+        public function orderCollection($email)
+        {
+            $answer = new Collection();
+            $orders = $this->order->getOrdersByEmail($email);
+            foreach ($orders as $order){
+                $product = $order->product;
+                $product->order_id = $order->id;
+                $product->user_email =$order->user_email;
+                $answer->push($product);
+            }
+                return $answer;
         }
-            return $answer;
-    }
 }

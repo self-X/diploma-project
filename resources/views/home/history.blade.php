@@ -7,7 +7,7 @@
                 <span style="font-size: 20px; margin-left: 100px;">{{$order->title}}</span>
                 <div class="row">
                     <div class="col-5 col-sm-3">
-                        <img src="images/4.jpg" style="width: 125px; height: 125px; border-radius: 5px; margin: 5px;" alt="image">
+                        <img src="images/{{$order->img_name}}" style="width: 125px; height: 125px; border-radius: 5px; margin: 5px;" alt="image">
                     </div>
                     <div class="col-7">
                         <span>Order number: {{$order->order_id}}</span>

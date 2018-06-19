@@ -62,11 +62,17 @@ class ProductController extends Controller
         $charge = $this->stipeService->addNewCharge(Auth::user(), $stripePrice);
         if (Auth::check()) {
             $this->order->addOrder(Auth::user()->email, $product->id);
+            $this->removeFromBag($product);
             return redirect('home');
         }else{
             $this->order->addOrder($charge->source->name, $product->id);
             return back();
         }
+    }
+
+    public function removeFromBag(Product $product)
+    {
+          return $product->users()->detach();
     }
 
     public function create()
