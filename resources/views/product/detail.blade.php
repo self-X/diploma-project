@@ -29,7 +29,7 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleSelect1"><h4>Select a size :</h4></label>
-                                <select class="form-control" id="exampleSelect1">
+                                <select class="form-control" name="size">
                                     <option value="L">L</option>
                                     <option value="S">S</option>
                                     <option value="M">M</option>
