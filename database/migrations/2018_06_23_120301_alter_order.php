@@ -18,6 +18,10 @@ class AlterOrder extends Migration
                 ->references('id')->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
+            $table->foreign('size_id')
+                ->references('id')->on('sizeofproducts')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
@@ -30,6 +34,9 @@ class AlterOrder extends Migration
     {
         Schema::table('user_product', function (Blueprint $table) {
             $table->dropForeign('user_product_product_id_foreign');
+        });
+        Schema::table('sizeofproduct', function (Blueprint $table) {
+            $table->dropForeign('user_product_size_id_foreign');
         });
     }
 }

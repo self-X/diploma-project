@@ -2,186 +2,151 @@
 @section('title', $prod->title)
 
 @section('content')
-<div style="position: fixed;" id="responseToAddCard"></div>
-<div class="container">
-    <div class="card flex-md-row  box-shadow h-md-250">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" style="width: 350px; height: 500px;">
-                    <img class="card-img-right flex-auto d-none d-lg-block d-block w-100" src="/images/{{$prod->img_name}}"
-                         alt="First slide">
+    <div style="position: fixed;" id="responseToAddCard"></div>
+    <div class="container">
+        <div class="card flex-md-row  box-shadow h-md-250">
+                <div style="padding: 25px;">
+                    <img class="card-img-right flex-auto d-none d-lg-block d-block"
+                             style="width: 450px ; height: 350px; "
+                             src="/images/{{$prod->img_name}}"
+                             alt="First slide"><br>
+                    <h2 class="d-inline-block mb-2 text-dark">{{$prod->title}}</h2><br>
+                    <div class="mb-1 text-muted">{{$prod->created_at}}</div>
                 </div>
+            {{--card1--}}
+            <div class="card-body d-flex flex-column align-items-start">
+
+
+                <div class="card box-shadow" style="width: 300px">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Price:</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">{{$prod->price}}
+                            <small class="text-muted">/ mo</small>
+                        </h1>
+                        <form id="addCardForm" action="/{{$categoryTitle}}/{{$prod->id}}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="exampleSelect1"><h4>Select a size :</h4></label>
+                                <select class="form-control" id="exampleSelect1">
+                                    <option value="L">L</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn click  btn-dark"><b>ADD TO BAG</b></button>
+                        </form>
+                        <hr>
+                        {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
+                        <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
+                            {{ csrf_field() }}
+                            <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
+                                    data-amount="{{$stripePrice}}"
+                                    data-name="{{$prod->title}}"
+                                    data-description="{{$prod->description}}"
+                                    data-image="/images/{{$prod->img_name}}"
+                                    data-locale="auto">
+                            </script>
+                        </form>
+                    </div>
+                    <div id="makeOrder" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <h4 class="modal-title">Заголовок окна</h4>
+                                <div class="modal-body">
+                                    let`s buy!
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-dark" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                @guest
+                <a href="/login" class="badge-pill badge badge-info">login to save in wishlist</a>
+                @endguest
             </div>
-            {{--
-            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            --}}
         </div>
 
-        {{--card1--}}
-        <div class="card-body d-flex flex-column align-items-start">
-            <h2 class="d-inline-block mb-2 text-dark">{{$prod->title}}</h2>
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Details</h4>
+            </div>
+            <div class="card-body">
+                <span class="">{{$prod->description}}</span>
+            </div>
 
-            <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
+            <div class="card mb-4 box">
+                <div class="card-header bg-white" style="cursor: pointer">
+                    <h4 class="my-0 font-weight-normal  text-center">Related Products</h4>
+                </div>
 
-            <div class="mb-1 text-muted">{{$prod->created_at}}</div>
-
-            <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Price:</h4>
+                    <h4 class="my-0 font-weight-normal">Product 1</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">{{$prod->price}}
-                        <small class="text-muted">/ mo</small>
+                    <h1 class="card-title pricing-card-title">Bootu veri gud
+                        <small class="text-muted">discount 10%</small>
                     </h1>
-                    <h4>Select a size :</h4>
-                    <div class="input-group form-check form-check-inline" style="color: hotpink; font-weight: 500;">
-                        <ul>
-                            <div class="form-check form-check-inline">
-                                <input class="checkbox-my form-check-input" type="checkbox"
-                                       id="inlineCheckbox1"
-                                       value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">L</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="checkbox-my form-check-input" type="checkbox"
-                                       id="inlineCheckbox2"
-                                       value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">S</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="checkbox-my form-check-input" type="checkbox"
-                                       id="inlineCheckbox1"
-                                       value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">M</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="checkbox-my form-check-input" type="checkbox"
-                                       id="inlineCheckbox2"
-                                       value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">XL</label>
-                            </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <form  id="addCardForm" action="/{{$categoryTitle}}/{{$prod->id}}" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn click  btn-dark"><b>ADD TO BAG</b></button>
-                    </form>
-                    <hr>
-                    {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
-                    <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
-                        {{ csrf_field() }}
-                        <script
-                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
-                                data-amount="{{$stripePrice}}"
-                                data-name="{{$prod->title}}"
-                                data-description="{{$prod->description}}"
-                                data-image="/images/{{$prod->img_name}}"
-                                data-locale="auto">
-                        </script>
-                    </form>
+                    <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
+                        <li>
+                            <img style="height: 65px; height: 200px;" src="images/w10.jpg" class="img-responsive "
+                                 alt=""/>
+                        </li>
+                    </ul>
+
+                    <ul class="list-unstyled mt-4">
+                        <li>
+                            <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
+                        </li>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                        <li class="mb-1 text-muted">Nov 12</li>
+                        <li class="card-text" style="display: block; text-align: justify">
+                            when an unknown printer took a galley of type and scrambled it to
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn btn-success">Add to card</button>
+                    <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 210$</span>
+
                 </div>
-<div id="makeOrder" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <h4 class="modal-title">Заголовок окна</h4>
-            <div class="modal-body">
-                let`s buy!
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-dark" type="button" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-            @guest
-            <a href="/login" class="badge-pill badge badge-info">login to save in wishlist</a>
-            @endguest
-        </div>
-    </div>
 
-    <div class="card mb-4 box-shadow">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Details</h4>
-        </div>
-        <div class="card-body">
-                    <span class="">{{$prod->description}}</span>
-        </div>
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Product 1</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">Bootu veri gud
+                        <small class="text-muted">discount 10%</small>
+                    </h1>
+                    <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
+                        <li>
+                            <img style="height: 65px; height: 200px;" src="images/w8.jpg" class="img-responsive "
+                                 alt=""/>
+                        </li>
+                    </ul>
 
-        <div class="card mb-4 box">
-            <div class="card-header bg-white" style="cursor: pointer">
-                <h4 class="my-0 font-weight-normal  text-center">Related Products</h4>
-            </div>
+                    <ul class="list-unstyled mt-4">
+                        <li>
+                            <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
+                        </li>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
+                        <li class="mb-1 text-muted">Nov 12</li>
+                        <li class="card-text" style="display: block; text-align: justify">
+                            when an unknown printer took a galley of type and scrambled it to
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn btn-success">Add to card</button>
+                    <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 10$</span>
 
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Product 1</h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">Bootu veri gud
-                    <small class="text-muted">discount 10%</small>
-                </h1>
-                <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
-                    <li>
-                        <img style="height: 65px; height: 200px;" src="images/w10.jpg" class="img-responsive "
-                             alt=""/>
-                    </li>
-                </ul>
-
-                <ul class="list-unstyled mt-4">
-                    <li>
-                        <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
-                    </li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
-                    <li class="mb-1 text-muted">Nov 12</li>
-                    <li class="card-text" style="display: block; text-align: justify">
-                        when an unknown printer took a galley of type and scrambled it to
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-                <button type="button" class="btn btn-success">Add to card</button>
-                <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 210$</span>
-
-            </div>
-
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Product 1</h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">Bootu veri gud
-                    <small class="text-muted">discount 10%</small>
-                </h1>
-                <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
-                    <li>
-                        <img style="height: 65px; height: 200px;" src="images/w8.jpg" class="img-responsive "
-                             alt=""/>
-                    </li>
-                </ul>
-
-                <ul class="list-unstyled mt-4">
-                    <li>
-                        <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
-                    </li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
-                    <li class="mb-1 text-muted">Nov 12</li>
-                    <li class="card-text" style="display: block; text-align: justify">
-                        when an unknown printer took a galley of type and scrambled it to
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-                <button type="button" class="btn btn-success">Add to card</button>
-                <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 10$</span>
-
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
