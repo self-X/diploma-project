@@ -1,12 +1,11 @@
 <div class="col-md-6" style="float: left">
     <div class="card">
         @if(empty($collectionOrders) || !$collectionOrders->first())
-            <div class="card-header">What I have already bough</div>
+                <div class="card-header">What I have already bought</div>
             <h3 style="padding: 25px;">no orders yet.</h3>
         @else
         <div class="card-header">What I have already bought</div>
         <div class="card-body">
-
             @foreach($collectionOrders as $order)
             <div class="card-block-hist" style="font-size: 16px;">
                 <span style="font-size: 20px; margin-left: 100px;">{{$order->title}}</span>

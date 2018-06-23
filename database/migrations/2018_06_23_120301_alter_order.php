@@ -36,7 +36,7 @@ class AlterOrder extends Migration
             $table->dropForeign('user_product_product_id_foreign');
         });
         Schema::table('sizeofproduct', function (Blueprint $table) {
-            $table->dropForeign('user_product_size_id_foreign');
+            $table->dropForeign('order_size_id_foreign');
         });
     }
 }

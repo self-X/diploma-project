@@ -4,7 +4,7 @@
             <div class="card-header">My Bag</div>
          <h3 style="padding: 25px;">no product yet.</h3>
         @else
-            <div class="card-header">My Bag <span class="alert alert-dark" style="font-weight: 600;margin-left: 500px;">Total: {{$sumOfProduct}}
+            <div class="card-header">My Bag <span class="alert alert-dark" style="font-weight: 600;margin-left: 100px;">Total: {{$sumOfProduct}}
                     <span style="margin-left: 50px; ;"> For All: {{$price}}$</span></span></div>
             <div class="card-body">
                 @foreach($myProd as $myProduct)
@@ -21,6 +21,15 @@
                                         style="color: blue; padding-left: 5px; padding-right: 5px; font-size: 16px;">{{$myProduct->price}}</i>
                                 <form action="/products/{{$categoryTitle}}/{{$myProduct->id}}" method="POST">
                                     {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label for="exampleSelect1"><h4>Select a size :</h4></label>
+                                        <select class="form-control" name="size">
+                                            <option value="L">L</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="XL">XL</option>
+                                        </select>
+                                    </div>
                                     <script
                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                             data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"

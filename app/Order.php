@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Category;
+use App\Sizeofproduct;
 class Order extends Model
 {
     protected $fillable = [
-        'user_email', 'product_id',
+        'user_email', 'product_id', 'size_id'
     ];
 
     public function product()
@@ -27,11 +29,13 @@ class Order extends Model
         return User::where('email', $email);
     }
 
-    public function addOrder($email, $product_id)
+    public function addOrder($email, $product_id, $size)
     {
+       $size = Sizeofproduct::where('alias',$size)->first()->id;
         return $this->create([
             'user_email' => $email,
-            'product_id' => $product_id
+            'product_id' => $product_id,
+            'size_id' =>$size
         ]);
     }
 

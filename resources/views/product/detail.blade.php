@@ -2,7 +2,7 @@
 @section('title', $prod->title)
 
 @section('content')
-    <div style="position: fixed;" id="responseToAddCard"></div>
+    <div style="position: fixed; z-index: 999;" id="responseToAddCard"></div>
     <div class="container">
         <div class="card flex-md-row  box-shadow h-md-250">
                 <div style="padding: 25px;">
@@ -27,6 +27,12 @@
                         </h1>
                         <form id="addCardForm" action="/{{$categoryTitle}}/{{$prod->id}}" method="POST">
                             {{ csrf_field() }}
+                            <button type="submit" class="btn click  btn-dark"><b>ADD TO BAG</b></button>
+                        </form>
+                        <hr>
+                        {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
+                        <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleSelect1"><h4>Select a size :</h4></label>
                                 <select class="form-control" name="size">
@@ -36,12 +42,6 @@
                                     <option value="XL">XL</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn click  btn-dark"><b>ADD TO BAG</b></button>
-                        </form>
-                        <hr>
-                        {{--<button type="button" data-toggle="modal" data-target="#makeOrder" class="btn btn-lg btn-block btn-success">BUY</button>--}}
-                        <form action="/products/{{$categoryTitle}}/{{$prod->id}}" method="POST">
-                            {{ csrf_field() }}
                             <script
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="pk_test_J2qtLeKSx9H6I4RDIgzDga90"
@@ -81,72 +81,4 @@
             <div class="card-body">
                 <span class="">{{$prod->description}}</span>
             </div>
-
-            <div class="card mb-4 box">
-                <div class="card-header bg-white" style="cursor: pointer">
-                    <h4 class="my-0 font-weight-normal  text-center">Related Products</h4>
-                </div>
-
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Product 1</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">Bootu veri gud
-                        <small class="text-muted">discount 10%</small>
-                    </h1>
-                    <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
-                        <li>
-                            <img style="height: 65px; height: 200px;" src="images/w10.jpg" class="img-responsive "
-                                 alt=""/>
-                        </li>
-                    </ul>
-
-                    <ul class="list-unstyled mt-4">
-                        <li>
-                            <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
-                        </li>
-                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
-                        <li class="mb-1 text-muted">Nov 12</li>
-                        <li class="card-text" style="display: block; text-align: justify">
-                            when an unknown printer took a galley of type and scrambled it to
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <button type="button" class="btn btn-success">Add to card</button>
-                    <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 210$</span>
-
-                </div>
-
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Product 1</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">Bootu veri gud
-                        <small class="text-muted">discount 10%</small>
-                    </h1>
-                    <ul class="float-lg-left list-unstyled mt-3 mb-4" style="margin-right: 25px;">
-                        <li>
-                            <img style="height: 65px; height: 200px;" src="images/w8.jpg" class="img-responsive "
-                                 alt=""/>
-                        </li>
-                    </ul>
-
-                    <ul class="list-unstyled mt-4">
-                        <li>
-                            <span class="mb-1">Brand: <a href="#">Sed do eiusmod </a></span>
-                        </li>
-                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
-                        <li class="mb-1 text-muted">Nov 12</li>
-                        <li class="card-text" style="display: block; text-align: justify">
-                            when an unknown printer took a galley of type and scrambled it to
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <button type="button" class="btn btn-success">Add to card</button>
-                    <span class="text-info" style="font-size: 20px; padding-left: 50px;">price: 10$</span>
-
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

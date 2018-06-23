@@ -39,7 +39,10 @@ class HomeController extends Controller
         $user = Auth::user();
         $userProducts = $user->products;
         if (!$userProducts->first()) {
-            return view('home.home', ['no_products' => true]);
+            return view('home.home', [
+                'no_products' => true,
+                 'collectionOrders' => $this->orderCollection(Auth::user()->email),
+            ]);
         } else {
 
             $price = 0;
